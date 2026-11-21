@@ -1,0 +1,334 @@
+/* style.css — Twin Peeks: warm storybook chrome around the two panels. */
+
+:root {
+  --cream: #f7ead7;
+  --paper: #fff8ea;
+  --ink: #4a3226;
+  --ink-soft: #7a5a44;
+  --gold: #d9a441;
+  --gold-deep: #b57f22;
+  --teal: #2f7d6d;
+  --red: #c0392b;
+  --green: #5d9b4a;
+  --card-shadow: 0 10px 30px rgba(74, 50, 38, 0.25);
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+#app {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 10px 16px 12px;
+}
+
+/* ---- header HUD ---- */
+
+#hud {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  background: var(--paper);
+  border: 2px solid var(--ink);
+  border-radius: 14px;
+  padding: 8px 16px;
+  box-shadow: var(--card-shadow);
+}
+
+.brand h1 {
+  margin: 0;
+  font-size: 30px;
+  letter-spacing: 1px;
+  color: var(--ink);
+}
+
+.brand h1::after {
+  content: ' 🔍';
+  font-size: 22px;
+}
+
+.tagline {
+  margin: 0;
+  font-size: 12px;
+  font-style: italic;
+  color: var(--ink-soft);
+  font-family: Verdana, Geneva, sans-serif;
+}
+
+.hud-mid {
+  flex: 1;
+  min-width: 0;
+}
+
+#level-name {
+  font-size: 17px;
+  font-weight: bold;
+}
+
+#timer-wrap {
+  position: relative;
+  height: 18px;
+  margin: 5px 0 4px;
+  background: #e8dcc4;
+  border: 1px solid var(--ink);
+  border-radius: 9px;
+  overflow: hidden;
+}
+
+#timer-fill {
+  height: 100%;
+  width: 100%;
+  background: var(--green);
+  transition: width 0.3s linear, background 0.3s;
+}
+
+#timer-text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+  font-family: Verdana, Geneva, sans-serif;
+  color: var(--ink);
+}
+
+#found-label {
+  font-size: 13px;
+  font-style: italic;
+  color: var(--ink-soft);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hud-right {
+  text-align: right;
+  font-family: Verdana, Geneva, sans-serif;
+}
+
+#found-text {
+  font-size: 19px;
+  font-weight: bold;
+  color: var(--teal);
+}
+
+#score-text {
+  font-size: 14px;
+  margin: 2px 0 6px;
+}
+
+.hud-buttons {
+  display: flex;
+  gap: 6px;
+  justify-content: flex-end;
+}
+
+button {
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 13px;
+  font-weight: bold;
+  color: var(--paper);
+  background: var(--teal);
+  border: 2px solid var(--ink);
+  border-radius: 8px;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+button:hover:not(:disabled) {
+  background: #3a9783;
+}
+
+button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+button.big {
+  font-size: 17px;
+  padding: 12px 26px;
+  background: var(--gold);
+  color: var(--ink);
+  border-radius: 12px;
+  margin-top: 10px;
+}
+
+button.big:hover {
+  background: #e8b95a;
+}
+
+#sound-btn, #restart-btn {
+  background: var(--ink-soft);
+}
+
+/* ---- panel labels ---- */
+
+#panel-labels {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 8px 6px 4px;
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 13px;
+}
+
+#panel-labels span:first-child,
+#panel-labels span:last-child {
+  font-weight: bold;
+  color: var(--ink);
+}
+
+#panel-labels span:nth-child(2) {
+  font-style: italic;
+  color: var(--ink-soft);
+}
+
+/* ---- stage ---- */
+
+#stage {
+  position: relative;
+}
+
+#game {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  cursor: crosshair;
+  background: var(--paper);
+}
+
+/* ---- overlays ---- */
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(74, 50, 38, 0.45);
+  border-radius: 10px;
+  z-index: 5;
+}
+
+.overlay.hidden {
+  display: none;
+}
+
+.card {
+  max-width: 560px;
+  margin: 16px;
+  background: var(--paper);
+  border: 3px solid var(--ink);
+  border-radius: 16px;
+  padding: 22px 28px;
+  text-align: center;
+  box-shadow: var(--card-shadow);
+}
+
+.card h2 {
+  margin: 0 0 4px;
+  font-size: 32px;
+}
+
+.card-sub {
+  margin: 0 0 12px;
+  font-style: italic;
+  color: var(--ink-soft);
+}
+
+.card p {
+  margin: 8px 0;
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+.rules {
+  text-align: left;
+  margin: 12px auto 4px;
+  padding-left: 22px;
+  font-size: 14px;
+  font-family: Verdana, Geneva, sans-serif;
+  line-height: 1.7;
+}
+
+.keys {
+  font-size: 12px;
+  font-family: Verdana, Geneva, sans-serif;
+  color: var(--ink-soft);
+}
+
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: 26px;
+  margin: 14px 0 6px;
+}
+
+.stats div {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-num {
+  font-size: 30px;
+  font-weight: bold;
+  color: var(--teal);
+}
+
+.stat-label {
+  font-size: 12px;
+  font-family: Verdana, Geneva, sans-serif;
+  color: var(--ink-soft);
+}
+
+#results-lines {
+  list-style: none;
+  margin: 10px 0 4px;
+  padding: 0;
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 13px;
+}
+
+#results-lines li {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 5px 4px;
+  border-bottom: 1px dashed #cbb894;
+}
+
+/* ---- footer ---- */
+
+#help {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 22px;
+  justify-content: center;
+  padding: 8px 4px 0;
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 12px;
+  color: var(--ink-soft);
+}
+
+#help .credit {
+  font-style: italic;
+}
+
+#status {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
